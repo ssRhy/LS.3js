@@ -1,91 +1,92 @@
 import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-
-const scene =new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-const renderer=new THREE.WebGLRenderer({
-  canvas:document.querySelector('#bg'),
+//全局变量声明
+let moon;
+let torus;
+let controls;
+  //场景
+  const scene =new THREE.Scene();  
+  //相机
+  const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  
+ //渲染器
+ const renderer=new THREE.WebGLRenderer({
+  canvas:document.querySelector('#bg'), 
 });
 
+//初始化
+function init(){ 
+//初始化相机位置
+camera.position.setZ(30);
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth,window.innerHeight);
-camera.position.setZ(30);
-renderer.render(scene,camera);
 
-const geometry=new THREE.TorusGeometry(10,3,16,100);
-const material=new THREE.MeshStandardMaterial({color:'red'})
-const torus=new THREE.Mesh(geometry,material);
+//初始化控制器
+controls=new OrbitControls(camera,renderer.domElement)
+
+//初始化light
 const pointLight=new THREE.PointLight(0xffffff)
 const ambientLight = new THREE.AmbientLight( 0xffffff)
 const lightHelper=new THREE.PointLightHelper(pointLight)
-const gridHelper=new THREE.GridHelper(200,50)
-const controls=new OrbitControls(camera,renderer.domElement)
-
 pointLight.position.set(2,2,1)
 scene.add(pointLight,ambientLight)
-scene.add(torus)
 scene.add(lightHelper)
 
+//初始化物体circle
+const geometry=new THREE.TorusGeometry(10,3,16,100);
+const material=new THREE.MeshStandardMaterial({color:'red'})
+torus=new THREE.Mesh(geometry,material);
+scene.add(torus)
 
-function addStar()
-{
-const geometry=new THREE.SphereGeometry(0.25,24,24)
-const material = new THREE.MeshStandardMaterial({
-  color: new THREE.Color("CornflowerBlue"), // 使用CornflowerBlue色值
-  emissive: 0xFFFFFF, // 自发光白色
-  emissiveIntensity: 0.8 // 发光强度
-});
-// 创建颜色渐变材质（需在init函数中定义）
-const gradientMaterial = new THREE.ShaderMaterial({
-  vertexShader: `
-    varying vec3 vPosition;
-    void main() {
-      vPosition = position;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform vec3 color1;
-    uniform vec3 color2;
-    varying vec3 vPosition;
-    void main() {
-      float mixValue = (vPosition.y + 1.0)/2.0; // 根据Y轴位置混合颜色
-      gl_FragColor = vec4(mix(color1, color2, mixValue), 1.0);
-    }
-  `,
-  uniforms: {
-    color1: { value: new THREE.Color(0x6495ED) },
-    color2: { value: new THREE.Color(0xFFFFFF) }
-  }
-});
+//初始化物体grid  
+const gridHelper=new THREE.GridHelper(200,50)
+//scene.add(gridHelper)
 
-// 应用材质到几何体
-const star = new THREE.Mesh(geometry, gradientMaterial);
-const star1=new THREE.Mesh(geometry,material)
-
-const [x,y,z]=Array(3).fill().map(()=>THREE.MathUtils.randFloatSpread(100))
-star1.position.set(x,y,z)
-scene.add(star1)
-} 
-Array(200).fill().forEach(addStar)
-
+//加载纹理
 const spaceTexture=new THREE.TextureLoader().load('space.jpg')
 scene.background=spaceTexture
 
 const normalTexture=new THREE.TextureLoader().load('normal.jpg')
 const moonTexture=new THREE.TextureLoader().load('moon.jpg')
-const moon=new THREE.Mesh(
+ moon=new THREE.Mesh(
   new THREE.SphereGeometry( 15, 32, 16 ),
   new THREE.MeshStandardMaterial( {
     map: moonTexture,
     normalMap:normalTexture
-
   } )
 )
 scene.add(moon)
 
+//添加星星
+Array(200).fill().forEach(addStar)
+
+// 添加滚动事件监听
+document.body.onscroll=moveCamera
+//添加动画循环
+animate()
+}
+//-------------------------------------------------------------------------------
+
+
+
+
+// 创建addStar函数
+function addStar() {
+  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+  const material = new THREE.MeshStandardMaterial({
+      color: new THREE.Color("CornflowerBlue"),
+      emissive: 0xFFFFFF,
+      emissiveIntensity: 0.8
+  });
+  const star = new THREE.Mesh(geometry, material);
+  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
+  star.position.set(x, y, z);
+  scene.add(star);
+}
+//Array(200).fill().forEach(addStar)
+
+// 3. 创建moveCamera函数
 function moveCamera(){
   const t=document.body.getBoundingClientRect().top
   moon.rotation.x+=0.05
@@ -97,8 +98,8 @@ function moveCamera(){
   camera.position.z=t*-0.0002
   
 }
-document.body.onscroll=moveCamera
 
+//创建球体动画循环
 function animate(){
   requestAnimationFrame(animate)
   moon .rotation.x+=0.01
@@ -106,9 +107,13 @@ function animate(){
   moon.rotation.z+=0.01
   renderer.render(scene,camera)
   renderer.update()
+  
+renderer.render(scene,camera);
 
 }
-animate()
+//调用函数
+init()
+
 
 
 
