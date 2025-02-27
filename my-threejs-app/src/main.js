@@ -100,7 +100,7 @@ const starPurple = new THREE.Color(0x9370DB); // 中等紫色
     flickerSpeed: 0.05 + Math.random() * 0.1
   }
 
-
+//先加入再显示
   stars.push(star);
   scene.add(star);
 }
@@ -136,6 +136,7 @@ function animate(){
   const offset=i*0.01
   star.position.x+=Math.sin(time+offset)*0.03;
   star.position.y+=Math.cos(time+offset)*0.03;
+  //闪烁效果
   if (star.userData && star.userData.originalColor) {
     const flicker = Math.sin(time * star.userData.flickerSpeed) * 0.2 + 0.8;
     star.material.emissiveIntensity = flicker;
