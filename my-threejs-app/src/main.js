@@ -5,6 +5,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 let moon;
 let torus;
 let controls;
+let stars=[];
+let time=0;
   //场景
   const scene =new THREE.Scene();  
   //相机
@@ -78,16 +80,32 @@ animate()
 // 创建addStar函数
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+  const starBlue = new THREE.Color(0x4682B4);   // 钢蓝色
+const starPurple = new THREE.Color(0x9370DB); // 中等紫色
   const material = new THREE.MeshStandardMaterial({
-      color: new THREE.Color("CornflowerBlue"),
+      color: starBlue,starPurple,
       emissive: 0xFFFFFF,
       emissiveIntensity: 0.8
   });
   const star = new THREE.Mesh(geometry, material);
   const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
   star.position.set(x, y, z);
+  star.rotationSpeed={
+    x:Math.random()*0.02,
+    y:Math.random()*0.02,
+    z:Math.random()*0.02
+  }
+  star.userData={
+    originalColor:  star.material.color.getHex(),
+    flickerSpeed: 0.05 + Math.random() * 0.1
+  }
+
+
+  stars.push(star);
   scene.add(star);
 }
+
+
 //Array(200).fill().forEach(addStar)
 
 // 3. 创建moveCamera函数
@@ -109,10 +127,31 @@ function animate(){
   moon .rotation.x+=0.01
   moon.rotation.y+=0.005
   moon.rotation.z+=0.01
-  renderer.render(scene,camera)
-  renderer.update()
-  
-renderer.render(scene,camera);
+ // 更新所有星星的旋转
+ time+=0.01
+ stars.forEach((star,i) => {
+  star.rotation.x += star.rotationSpeed.x;
+  star.rotation.y += star.rotationSpeed.y;
+  star.rotation.z += star.rotationSpeed.z;
+  const offset=i*0.01
+  star.position.x+=Math.sin(time+offset)*0.03;
+  star.position.y+=Math.cos(time+offset)*0.03;
+  if (star.userData && star.userData.originalColor) {
+    const flicker = Math.sin(time * star.userData.flickerSpeed) * 0.2 + 0.8;
+    star.material.emissiveIntensity = flicker;
+  }
+});
+
+
+
+
+
+// 更新控制器
+if (controls) controls.update();
+
+// 渲染场景
+renderer.render(scene, camera);
+
 
 }
 //调用函数
