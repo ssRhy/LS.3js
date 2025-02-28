@@ -49,18 +49,20 @@ scene.add(torus)
 const gridHelper=new THREE.GridHelper(200,50)
 //scene.add(gridHelper)
 
-//加载纹理
-const spaceTexture=new THREE.TextureLoader().load('space.jpg')
+// 添加空间纹理背景
+const spaceTexture=new THREE.TextureLoader().load('/space.jpg')
 scene.background=spaceTexture
 
-const normalTexture=new THREE.TextureLoader().load('normal.jpg')
-const moonTexture=new THREE.TextureLoader().load('moon.jpg')
- moon=new THREE.Mesh(
-  new THREE.SphereGeometry( 15, 32, 16 ),
-  new THREE.MeshStandardMaterial( {
-    map: moonTexture,
-    normalMap:normalTexture
-  } )
+const normalTexture=new THREE.TextureLoader().load('/normal.jpg')
+const moonTexture=new THREE.TextureLoader().load('/moon.jpg')
+
+//初始化月球
+moon=new THREE.Mesh(
+    new THREE.SphereGeometry(15, 32, 16 ),
+    new THREE.MeshStandardMaterial( {
+      map: moonTexture,
+      normalMap:normalTexture
+    } )
 )
 scene.add(moon)
 
@@ -157,13 +159,3 @@ renderer.render(scene, camera);
 }
 //调用函数
 init()
-
-
-
-
-
-
-
-
-
-
