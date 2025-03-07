@@ -1,13 +1,68 @@
-canvas{
-  
-  position:fixed;
-  top:0;
-  left:0;
-
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
-main{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 弹窗样式 */
+.planet-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: rgba(13, 14, 33, 0.95);
+  border: 2px solid #4a4a8f;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  color: white;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content h2 {
+  color: #7289da;
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  margin: 15px 0;
+  line-height: 1.6;
+  color: #dcddde;
+}
+
+.modal-content button {
+  background-color: #7289da;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #5865f2;
 }
