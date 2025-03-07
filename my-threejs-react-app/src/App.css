@@ -221,3 +221,31 @@ body {
   line-height: 1.8;
   margin-bottom: 1.5rem;
 }
+
+.memory-nav {
+  margin-top: 2rem;
+}
+
+.memory-chain-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: rgba(114, 137, 218, 0.3);
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.memory-chain-link:hover {
+  background-color: rgba(114, 137, 218, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(114, 137, 218, 0.3);
+}
+
+.memory-chain-link::before {
+  content: "🌟";
+  margin-right: 8px;
+}

@@ -5,6 +5,7 @@ import MoonPage from "./pages/MoonPage";
 import PetPlanetPage from "./pages/PetPlanetPage";
 import FamilyStarPage from "./pages/FamilyStarPage";
 import LoveStarPage from "./pages/LoveStarPage";
+import MemoryChainPage from "./pages/MemoryChainPage";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
               <main>
                 <h1>lovstone</h1>
                 <p>Welcome to lovestone</p>
+                <nav className="memory-nav">
+                  <a href="/memory-chain" className="memory-chain-link">
+                    我的记忆星链
+                  </a>
+                </nav>
               </main>
             </div>
           }
@@ -27,6 +33,7 @@ function App() {
         <Route path="/pet-planet" element={<PetPlanetPage />} />
         <Route path="/family-star" element={<FamilyStarPage />} />
         <Route path="/love-star" element={<LoveStarPage />} />
+        <Route path="/memory-chain" element={<MemoryChainPage />} />
       </Routes>
     </Router>
   );

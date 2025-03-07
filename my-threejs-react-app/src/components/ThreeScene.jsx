@@ -240,13 +240,28 @@ const ThreeScene = () => {
         // 添加按钮事件监听器
         const enterButton = modal.querySelector(".enter-button");
         const closeButton = modal.querySelector(".close-button");
+        const modalContent = modal.querySelector(".modal-content");
 
-        enterButton.addEventListener("click", () => {
+        enterButton.addEventListener("click", (e) => {
+          e.stopPropagation();
           navigateToPlanet(title);
         });
 
-        closeButton.addEventListener("click", () => {
+        closeButton.addEventListener("click", (e) => {
+          e.stopPropagation();
           modal.remove();
+        });
+
+        // 点击模态框外部关闭
+        modal.addEventListener("click", (e) => {
+          if (!modalContent.contains(e.target)) {
+            modal.remove();
+          }
+        });
+
+        // 阻止模态框内部点击事件冒泡
+        modalContent.addEventListener("click", (e) => {
+          e.stopPropagation();
         });
       };
 
