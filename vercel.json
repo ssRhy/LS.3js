@@ -1,0 +1,6 @@
+{
+  "framework": "vite",
+  "buildCommand": "cd my-threejs-react-app && npm install && npm run build",
+  "outputDirectory": "my-threejs-react-app/dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
