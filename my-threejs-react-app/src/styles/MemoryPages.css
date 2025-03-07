@@ -1,0 +1,773 @@
+/* 通用记忆页面样式 */
+.memory-page {
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 页面头部 */
+.memory-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.memory-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(114, 137, 218, 0.7);
+}
+
+.memory-subtitle {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 内容区域 */
+.memory-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 表单样式 */
+.memory-form {
+  background-color: rgba(13, 14, 33, 0.85);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.memory-form h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #7289da;
+}
+
+.memory-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+}
+
+.memory-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.memory-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.date-input,
+.person-select,
+.relation-input {
+  flex: 1;
+}
+
+/* 上传区域 */
+.memory-upload {
+  margin-bottom: 1.5rem;
+}
+
+.upload-button {
+  background-color: #4f545c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #5d6269;
+}
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.preview-image-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.remove-image {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f04747;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.add-memory-button {
+  background-color: #43b581;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.add-memory-button:hover {
+  background-color: #3ca374;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(67, 181, 129, 0.3);
+}
+
+/* 记忆卡片区域 */
+.memories-container {
+  background-color: rgba(13, 14, 33, 0.85);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.memories-container h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #7289da;
+  display: flex;
+  align-items: center;
+}
+
+.filter-tag {
+  font-size: 0.9rem;
+  background-color: #7289da;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.clear-filter {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 5px;
+  padding: 0 5px;
+}
+
+.no-memories {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+.memory-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.memory-card {
+  background-color: rgba(47, 49, 54, 0.6);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.memory-card:hover {
+  transform: translateY(-5px);
+}
+
+.memory-card-header {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.memory-card-header h3 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.memory-meta-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.memory-date,
+.memory-person {
+  background-color: rgba(114, 137, 218, 0.3);
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.delete-memory {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  color: #f04747;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.delete-memory:hover {
+  opacity: 1;
+}
+
+.memory-text {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.memory-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.memory-image {
+  width: calc(33.333% - 7px);
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.memory-image:hover {
+  transform: scale(1.05);
+}
+
+/* 页脚 */
+.memory-footer {
+  margin-top: 3rem;
+  text-align: center;
+  width: 100%;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #7289da;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #5b6eae;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(114, 137, 218, 0.3);
+}
+
+/* 爱情记忆页面特定样式 */
+.love-memory-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/pink.jpg");
+}
+
+/* 家庭记忆页面特定样式 */
+.family-memory-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/mars.jpg");
+}
+
+/* 宠物记忆页面特定样式 */
+.pet-memory-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/purple.jpg");
+}
+
+/* 宠物页面背景切换 */
+.pet-memory-page.starry {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/space.jpg");
+}
+
+.pet-memory-page.meadow {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1464618663641-bbdd760ae84a");
+}
+
+.pet-memory-page.sunset {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1495616811223-4d98c6e9c869");
+}
+
+.toggle-background {
+  background-color: rgba(114, 137, 218, 0.3);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.toggle-background:hover {
+  background-color: rgba(114, 137, 218, 0.5);
+}
+
+/* 宠物资料区域 */
+.pet-profile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background-color: rgba(13, 14, 33, 0.85);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.profile-image-container {
+  flex: 0 0 200px;
+  height: 200px;
+  position: relative;
+}
+
+.pet-profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.profile-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.change-profile {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.pet-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.pet-name-input {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pet-details {
+  display: flex;
+  gap: 1rem;
+}
+
+.pet-type-select,
+.pet-birthday-input {
+  flex: 1;
+}
+
+/* 宠物时间轴 */
+.pet-timeline {
+  background-color: rgba(13, 14, 33, 0.85);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.timeline-form {
+  margin-bottom: 2rem;
+}
+
+.timeline-container {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background-color: rgba(114, 137, 218, 0.5);
+  transform: translateX(-50%);
+}
+
+.timeline-event {
+  position: relative;
+  margin-bottom: 2rem;
+  width: 45%;
+}
+
+.timeline-event.left {
+  left: 0;
+}
+
+.timeline-event.right {
+  left: 55%;
+}
+
+.timeline-event::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  background-color: #7289da;
+  border-radius: 50%;
+}
+
+.timeline-event.left::before {
+  right: -60px;
+}
+
+.timeline-event.right::before {
+  left: -60px;
+}
+
+.timeline-event-content {
+  background-color: rgba(47, 49, 54, 0.6);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.event-header {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.event-header h3 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.event-date {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(114, 137, 218, 0.3);
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.delete-event {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  color: #f04747;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.delete-event:hover {
+  opacity: 1;
+}
+
+.event-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.event-image {
+  width: calc(33.333% - 7px);
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.event-image:hover {
+  transform: scale(1.05);
+}
+
+/* 宠物装饰 */
+.pet-decorations {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* 家庭成员区域 */
+.family-members-section {
+  background-color: rgba(13, 14, 33, 0.85);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.family-member-form {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.member-photo-container {
+  flex: 0 0 120px;
+  height: 120px;
+  position: relative;
+}
+
+.member-photo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.member-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+}
+
+.member-photo-placeholder.small {
+  width: 60px;
+  height: 60px;
+  font-size: 1.2rem;
+  background-color: #7289da;
+  border: none;
+}
+
+.member-info-inputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-member-button {
+  background-color: #7289da;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.add-member-button:hover {
+  background-color: #5b6eae;
+}
+
+.family-members-gallery {
+  margin-top: 2rem;
+}
+
+.no-members {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+.members-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.family-member-card {
+  background-color: rgba(47, 49, 54, 0.6);
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.member-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.member-info {
+  margin-bottom: 1rem;
+}
+
+.member-info h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.member-info p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.member-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.filter-memories,
+.delete-member {
+  background-color: transparent;
+  border: 1px solid;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.filter-memories {
+  border-color: #7289da;
+  color: #7289da;
+}
+
+.filter-memories:hover {
+  background-color: #7289da;
+  color: white;
+}
+
+.delete-member {
+  border-color: #f04747;
+  color: #f04747;
+}
+
+.delete-member:hover {
+  background-color: #f04747;
+  color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .memory-page {
+    padding: 1rem;
+  }
+
+  .memory-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .memory-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-container::before {
+    left: 20px;
+  }
+
+  .timeline-event {
+    width: 90%;
+    left: 30px !important;
+  }
+
+  .timeline-event.left::before,
+  .timeline-event.right::before {
+    left: -30px;
+  }
+
+  .family-member-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .memory-meta {
+    flex-direction: column;
+  }
+}
